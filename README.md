@@ -9,18 +9,21 @@
 ## ✨ 主要特性
 
 ### 🚀 核心功能
+
 - **智能转换**: 根据SQL复杂度自动选择最佳转换策略
 - **高成功率**: 复杂PL/SQL转换成功率85%+
 - **多方言支持**: 支持26种数据库方言
 - **实时预览**: Streamlit Web界面，实时转换反馈
 
 ### 🎯 技术特色
+
 - **双重引擎**: SQLGlot + LLM 智能结合
 - **模块化架构**: 清晰的代码结构，易于扩展
 - **异常处理**: 完善的错误处理和用户友好提示
 - **性能监控**: 详细的转换统计和性能指标
 
 ### 🛠️ 支持的方言
+
 - **Oracle** ↔ PostgreSQL, MySQL, Snowflake, BigQuery
 - **MySQL** ↔ PostgreSQL, Oracle, SQLite, MariaDB
 - **PostgreSQL** ↔ MySQL, Oracle, Redshift, BigQuery
@@ -31,6 +34,7 @@
 ## 🚀 快速开始
 
 ### 环境要求
+
 - Python 3.8+
 - 4GB+ 内存
 - 稳定的网络连接
@@ -38,12 +42,14 @@
 ### 安装步骤
 
 1. **克隆项目**
+
 ```bash
-git clone https://github.com/yourusername/sql-dialect-converter.git
-cd sql-dialect-converter
+git clone https://github.com/blacksamuraiiii/sqlglot-web.git
+cd sqlglot-web
 ```
 
 2. **创建虚拟环境**
+
 ```bash
 python -m venv venv
 
@@ -55,16 +61,19 @@ source venv/bin/activate
 ```
 
 3. **安装依赖**
+
 ```bash
 pip install -r requirements.txt
 ```
 
 4. **配置环境变量**
+
 ```bash
 cp .env.example .env
 ```
 
 编辑 `.env` 文件，填入你的 LLM API 配置：
+
 ```env
 # LLM API配置
 base_url='https://api-inference.modelscope.cn/v1/'
@@ -81,6 +90,7 @@ validate_syntax=true
 ```
 
 5. **启动应用**
+
 ```bash
 # 使用重构版本（推荐）
 streamlit run appv2.py
@@ -99,9 +109,14 @@ streamlit run app.py
 4. **执行转换**: 点击"开始转换"按钮
 5. **查看结果**: 右侧显示转换结果和详细信息
 
+### 界面展示
+
+![SQL方言转换工具界面](./screenshots/SQL方言转换V2.png)
+
 ### 示例转换
 
 **Oracle PL/SQL → PostgreSQL**
+
 ```sql
 -- Oracle 原始SQL
 CREATE OR REPLACE PROCEDURE test_proc IS
@@ -122,38 +137,22 @@ $$ LANGUAGE plpgsql;
 ### 高级功能
 
 #### 转换策略
+
 - **SQLGlot**: 适合简单SQL转换，速度快
 - **LLM**: 适合复杂PL/SQL结构，准确率高
 - **Hybrid**: 混合策略，自动回退
 
 #### 配置选项
+
 - **格式化输出**: 美化SQL格式
 - **语法验证**: 验证转换结果语法
 - **LLM智能回退**: SQLGlot失败时自动使用LLM
 
 #### 历史管理
+
 - **转换历史**: 自动保存转换记录
 - **结果复用**: 快速复用历史转换结果
 - **统计信息**: 查看成功率和性能指标
-
-## 🧪 测试验证
-
-### 运行测试
-```bash
-# 运行完整测试套件
-python tests/run_tests.py
-
-# 运行单个测试
-python tests/simple_test.py
-python tests/validate_refactor.py
-```
-
-### 测试覆盖
-- ✅ 基础功能测试
-- ✅ 简单SQL转换
-- ✅ Oracle过程转换
-- ✅ ZTC_SQLZZ转换
-- ✅ 性能测试
 
 ## 📁 项目结构
 
@@ -176,11 +175,6 @@ sql-dialect-converter/
 │       ├── __init__.py
 │       └── prompt_manager.py     # 提示词管理
 ├── tests/                        # 测试目录
-│   ├── run_tests.py              # 测试运行器
-│   ├── test_suite.py            # 测试套件
-│   ├── simple_test.py           # 简单测试
-│   ├── validate_refactor.py     # 验证测试
-│   └── test.sql                 # 测试SQL
 ├── logs/                         # 日志目录
 ├── docs/                         # 文档目录
 ├── screenshots/                  # 截图目录
@@ -196,6 +190,7 @@ sql-dialect-converter/
 ## 🔧 配置说明
 
 ### 环境变量配置
+
 ```env
 # LLM API配置
 base_url='https://api-inference.modelscope.cn/v1/'
@@ -216,6 +211,7 @@ validate_syntax=true
 ```
 
 ### 支持的LLM模型
+
 - **Qwen/Qwen3-32B**: 推荐模型，平衡性能和成本
 - **Qwen/Qwen2.5-72B-Instruct**: 高精度模型
 - **其他兼容模型**: 支持OpenAI兼容的API接口
@@ -225,6 +221,7 @@ validate_syntax=true
 ### 常见问题
 
 #### 1. 模块导入错误
+
 ```bash
 # 错误信息：ModuleNotFoundError: No module named 'src'
 # 解决方案：确保在项目根目录运行应用
@@ -233,6 +230,7 @@ streamlit run appv2.py
 ```
 
 #### 2. LLM API调用失败
+
 ```bash
 # 错误信息：LLM API认证失败
 # 解决方案：检查.env文件中的API密钥配置
@@ -240,12 +238,14 @@ streamlit run appv2.py
 ```
 
 #### 3. SQLGlot转换失败
+
 ```bash
 # 错误信息：不支持的转换特性
 # 解决方案：启用LLM回退选项，或简化SQL语句
 ```
 
 ### 日志查看
+
 ```bash
 # 查看日志文件
 ls logs/
@@ -255,6 +255,7 @@ tail -f logs/sql_converter_YYYYMMDD.log
 ## 🚀 部署指南
 
 ### Docker部署
+
 ```dockerfile
 FROM python:3.9-slim
 
@@ -269,17 +270,19 @@ CMD ["streamlit", "run", "appv2.py", "--server.port=8501", "--server.address=0.0
 ```
 
 ### 云服务部署
+
 ```bash
 # 构建Docker镜像
-docker build -t sql-converter .
+docker build -t sqlglot-web .
 
 # 运行容器
-docker run -p 8501:8501 -e API_KEY=your_key sql-converter
+docker run -p 8501:8501 -e API_KEY=your_key sqlglot-web
 ```
 
 ## 🤝 贡献指南
 
 ### 开发环境设置
+
 1. Fork 项目
 2. 创建功能分支
 3. 安装开发依赖
@@ -287,11 +290,13 @@ docker run -p 8501:8501 -e API_KEY=your_key sql-converter
 5. 提交 Pull Request
 
 ### 添加新方言支持
+
 1. 在 `src/config/config.py` 中添加方言配置
 2. 在 `tests/` 中添加测试用例
 3. 在 `src/prompts/prompt_manager.py` 中添加方言规则
 
 ### 代码规范
+
 - 遵循 PEP 8 代码规范
 - 添加详细的文档字符串
 - 编写相应的测试用例
@@ -300,11 +305,13 @@ docker run -p 8501:8501 -e API_KEY=your_key sql-converter
 ## 📊 性能指标
 
 ### 转换成功率
+
 - 简单SQL: >95%
 - 复杂PL/SQL: >85%
 - 动态SQL: >80%
 
 ### 性能表现
+
 - 平均转换时间: <3秒
 - SQLGlot转换: <1秒
 - LLM转换: <5秒
@@ -321,9 +328,9 @@ docker run -p 8501:8501 -e API_KEY=your_key sql-converter
 
 ## 📞 联系我们
 
-- **问题反馈**: [GitHub Issues](https://github.com/yourusername/sql-dialect-converter/issues)
-- **功能请求**: [GitHub Discussions](https://github.com/yourusername/sql-dialect-converter/discussions)
-- **邮件联系**: your-email@example.com
+- **问题反馈**: [GitHub Issues](https://github.com/blacksamuraiiii/sqlglot-web/issues)
+- **功能请求**: [GitHub Discussions](https://github.com/blacksamuraiiii/sqlglot-web/discussions)
+- **邮件联系**: black_samurai@yeah.net
 
 ---
 
