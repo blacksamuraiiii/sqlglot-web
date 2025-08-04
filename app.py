@@ -300,7 +300,7 @@ def call_xiyansql(base_url, api_key, sql, content=None):
         user_content += f'''需求描述：{content}'''
 
     response = client.chat.completions.create(
-        model='XGenerationLab/XiYanSQL-QwenCoder-32B-2504',
+        model='Qwen/Qwen2.5-72B-Instruct',
         messages=[
             {
                 'role': 'system',
@@ -328,7 +328,7 @@ if 'input_sql_area' not in st.session_state:
     st.session_state.input_sql_area = ""
 
 # 创建两列用于选择方言和转换按钮
-col1, col2, col3 = st.columns([5, 2, 5])
+col1, col2, col3 = st.columns([12, 1, 12])
 
 with col1:
     # 源方言选择下拉框
