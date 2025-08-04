@@ -24,11 +24,11 @@
 
 ### 🛠️ 支持的方言
 
-- **Oracle** ↔ PostgreSQL, MySQL, Snowflake, BigQuery
-- **MySQL** ↔ PostgreSQL, Oracle, SQLite, MariaDB
-- **PostgreSQL** ↔ MySQL, Oracle, Redshift, BigQuery
-- **SQL Server** ↔ PostgreSQL, Oracle, MySQL
-- **Hive** ↔ Spark, Presto, BigQuery
+- **Oracle**
+- **MySQL**
+- **PostgreSQL**
+- **SQL Server**
+- **Hive**
 - **以及更多...**
 
 ## 🚀 快速开始
@@ -113,27 +113,6 @@ streamlit run app.py
 
 ![SQL方言转换工具界面](./screenshots/SQL方言转换V2.png)
 
-### 示例转换
-
-**Oracle PL/SQL → PostgreSQL**
-
-```sql
--- Oracle 原始SQL
-CREATE OR REPLACE PROCEDURE test_proc IS
-BEGIN
-  ZTC_SQLZZ('INSERT INTO log_table VALUES (''test'')');
-  COMMIT;
-END test_proc;
-
--- 转换后的 PostgreSQL
-CREATE OR REPLACE PROCEDURE test_proc() AS $$
-BEGIN
-  PERFORM dblink_exec('INSERT INTO log_table VALUES (''test'')');
-  -- Note: ZTC_SQLZZ calls require custom PostgreSQL function
-END;
-$$ LANGUAGE plpgsql;
-```
-
 ### 高级功能
 
 #### 转换策略
@@ -157,7 +136,7 @@ $$ LANGUAGE plpgsql;
 ## 📁 项目结构
 
 ```
-sql-dialect-converter/
+sqlglot-web/
 ├── src/                          # 源代码目录
 │   ├── converters/               # 转换器模块
 │   │   ├── __init__.py
@@ -182,8 +161,6 @@ sql-dialect-converter/
 ├── appv2.py                      # 重构版本应用
 ├── requirements.txt              # 依赖包列表
 ├── .env.example                 # 环境变量模板
-├── .env                         # 环境变量配置
-├── CLAUDE.md                    # Claude Code指导
 └── README.md                    # 项目文档
 ```
 
@@ -210,12 +187,6 @@ pretty_print=true
 validate_syntax=true
 ```
 
-### 支持的LLM模型
-
-- **Qwen/Qwen3-32B**: 推荐模型，平衡性能和成本
-- **Qwen/Qwen2.5-72B-Instruct**: 高精度模型
-- **其他兼容模型**: 支持OpenAI兼容的API接口
-
 ## 🐛 故障排除
 
 ### 常见问题
@@ -225,7 +196,7 @@ validate_syntax=true
 ```bash
 # 错误信息：ModuleNotFoundError: No module named 'src'
 # 解决方案：确保在项目根目录运行应用
-cd "项目根目录"
+cd sqlglot-web
 streamlit run appv2.py
 ```
 
